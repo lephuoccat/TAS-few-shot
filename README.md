@@ -40,6 +40,16 @@ python NAS_FUSE.py
 ```
 
 ### Results
+The distribution of TAS found in miniImageNet (left) and the frequency of 64 classes in thetop-8 closest source tasks (right) in miniImageNet.
+<p align="center">
+  <img src="images/fig2.jpg" height="350" title="dis1">
+</p>
+
+The distribution of TAS found in tieredImageNet (left) and the frequency of 351 classes in the top-6 closest source tasks (right) in tieredImageNet.
+<p align="center">
+  <img src="images/fig3.jpg" height="350" title="dis2">
+</p>
+
 The table below indicates the comparison of our TA-NAS framework with the hand-designed image classifiers, and state-of-the-art NAS
 methods on Task 2 (binary classification) of MNIST.
 | Architecture | Accuracy (%) | Paramameters (M) | GPU days |
