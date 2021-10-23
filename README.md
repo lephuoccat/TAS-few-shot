@@ -22,21 +22,25 @@ We propose an asymmetric affinity score for representing the complexity of utili
 
 ### Executing program
 
-* First, we define tasks in MNIST, CIFAR-10, CIFAR-100, ImageNet, Taskonomy datasets and use the CNN to train on each task. The weights of the trained CNN is saved for each task.
+* First, we train the whole classifier with the entire training set.
 ```
-python train_task_mnist.py
-python train_task_cifar.py
-python train_task_cifar100.py
-python train_task_taskonomy.py
+python train_classifier.py
 ```
-* Next, we compute the Fisher Information matrices for each pair of tasks using the base task's network. Then, we identify the closest tasks based on the Fréchet of the Fisher Information matrices
+* Next, we define base tasks from the training set, and extract the mean hidden features for each of the class of data in both training and test set. Note that, the test set only has a few-shot data.
 ```
-python fisher-distance.py
-python fisher-distance_taskonomy.py
+python center_feature.py
 ```
-Lastly, the FUSE algorithm is applied to find the suitable architecture for the incoming task:
+* Then, we compute the task affinity using the Fisher task distance with the maximum bipartite matching algorithm. 
 ```
-python NAS_FUSE.py
+python matching_Fisher_distance.py
+```
+* After obtaining the related base tasks (using the computed task affinity), we use the base tasks' data samples to fine-tune the classifier. The few-shot tasks from the test set are also used to fine-tune the classifier.
+```
+python train_meta.py
+```
+* Lastly, the classifier is evaluated with a series of test tasks generated from the test set.
+```
+python test_few_shot.py
 ```
 
 ### Results
@@ -50,22 +54,13 @@ The distribution of TAS found in tieredImageNet (left) and the frequency of 351 
   <img src="images/fig3.jpg" height="300" title="dis2">
 </p>
 
-The table below indicates the comparison of our TA-NAS framework with the hand-designed image classifiers, and state-of-the-art NAS
-methods on Task 2 (binary classification) of MNIST.
-| Architecture | Accuracy (%) | Paramameters (M) | GPU days |
-| :---         |    :---:  |     :---:        |  :---:   |
-| VGG-16       | 99.41     |  14.72    | - |
-| ResNet-18    | 99.47     |  11.44    | - |
-| DenseNet-121 | 99.61     |  6.95     | - |
-| Random Search| 99.52     |  2.12     | 5 |
-| ENAS (1st)   | 94.29     |  4.60     | 2 |
-| ENAS (2nd)   | 94.71     |  4.60     | 4 |
-| DARTS (1st)  | 98.82     |  2.17     | 2 |
-| DARTS (2nd)  | 99.44     |  2.23     | 4 |
-| PC-DARTS (1st)| 98.76    |  1.78     | 2 |
-| PC-DARTS (2nd)| 99.88    |  2.22     | 4 |
-| TE-NAS        | 99.71    |  2.79     | 2 |
-| TA-NAS (ours) | 99.86    |  2.14     | 2 |
+The table below indicates the performance of our method for 5-way 1-shot and 5-way 5-shot classification with 95% confidence interval on miniImageNet dataset
+| Model        | Backbone      | Paramameters (M) | 1-shot      |  5-shot   |
+| :---         |    :---:      |     :---:        |  :---:      | :---:     |
+| TAS-simple   | ResNet-12     |  7.99            | 64.71±0.43  | 82.08±0.45|
+| TAS-distill  | ResNet-12     |  7.99            | 65.13±0.39  | 82.47±0.52|
+| TAS-distill+ | ResNet-12     |  12.47           | 65.68±0.45  | 83.92±0.55|
+
 
 ## Authors
 
