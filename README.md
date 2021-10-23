@@ -7,7 +7,7 @@ We propose an asymmetric affinity score for representing the complexity of utili
 
 
 <p align="center">
-  <img src="images/fig1.jpg" height="350" title="procedure">
+  <img src="images/fig1.jpg" height="550" title="procedure">
 </p>
 
 ## Getting Started
