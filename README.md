@@ -39,25 +39,7 @@ Lastly, the FUSE algorithm is applied to find the suitable architecture for the 
 python NAS_FUSE.py
 ```
 
-### Fisher Task Distance (FTD) Consistency
-The following graphs indicate the consistancy of the Fisher Task distance on various datasets and different neural network architectures.
-<p align="center">
-  <img src="images/fig1.jpg" height="350" title="distance1">
-  <br><img src="images/fig2.jpg" height="350" title="distance2">
-</p>
-
-### Results on Transfer Learning
-The graph below shows the comparison of task affinity between our approach and Taskonomy approach for each task. 
-<p align="center">
-  <img src="images/fig_taskonomy_1.jpg" height="350" title="distance">
-</p>
-
-The atlas plot of tasks (below) found from our approach indicates the computed relationship between tasks according to locations in space.
-<p align="center">
-  <img src="images/fig_taskonomy_2.png" height="350" title="plot">
-</p>
-
-### Results on Transfer Learning
+### Results
 The table below indicates the comparison of our TA-NAS framework with the hand-designed image classifiers, and state-of-the-art NAS
 methods on Task 2 (binary classification) of MNIST.
 | Architecture | Accuracy (%) | Paramameters (M) | GPU days |
@@ -75,25 +57,9 @@ methods on Task 2 (binary classification) of MNIST.
 | TE-NAS        | 99.71    |  2.79     | 2 |
 | TA-NAS (ours) | 99.86    |  2.14     | 2 |
 
-The table below indicates the Comparison of our TA-NAS framework with the hand-designed image classifiers, and state-of-the-art NAS methods on Task 2 (4-class classification) of CIFAR-10.
-| Architecture | Accuracy (%) | Paramameters (M) | GPU days |
-| :---         |    :---:  |     :---:        |  :---:   |
-| VGG-16       | 86.75     |  14.72    | - |
-| ResNet-18    | 86.93     |  11.44    | - |
-| DenseNet-121 | 88.12     |  6.95     | - |
-| Random Search| 88.55     |  3.65     | 5 |
-| ENAS (1st)   | 73.23     |  4.60     | 2 |
-| ENAS (2nd)   | 75.22     |  4.60     | 4 |
-| DARTS (1st)  | 90.11     |  3.12     | 2 |
-| DARTS (2nd)  | 91.19     |  3.28     | 4 |
-| PC-DARTS (1st)| 92.07    |  3.67     | 2 |
-| PC-DARTS (2nd)| 92.49    |  3.66     | 4 |
-| TE-NAS        | 91.02    |  3.78     | 2 |
-| TA-NAS (ours) | 92.58    |  3.13     | 2 |
-
 ## Authors
 
 Cat P. Le (cat.le@duke.edu), 
-<br>Mohammadreza Soltani, 
 <br>Juncheng Dong, 
+<br>Mohammadreza Soltani, 
 <br>Vahid Tarokh
